@@ -363,8 +363,22 @@ elif section == "Task A - Health NGO Board":
         "Explore it yourself"
     ])
 
+    # TAB 1: THE STORY
     with story:
-        st.write("Our data story will go here.")
+
+        # Select data from 2007
+        data_2007 = df[df["year"] == 2007]
+
+        # Find average life expectancy for each continent
+        averages = data_2007.groupby("continent")["lifeExp"].mean()
+
+        # Sort from lowest to highest
+        averages = averages.sort_values()
+
+        # Display the results
+        st.subheader("Average Life Expectancy in 2007")
+        st.dataframe(averages)
+
 
     with explore:
         st.write("Our interactive explorer will go here.")
