@@ -356,7 +356,7 @@ elif section == "Task A - Health NGO Board":
 
     df = px.data.gapminder()
 
-    st.title("Health NGO: Global Life Expectancy")
+    st.title("Africa Had the Lowest Average Life Expectancy in 2007: 54.8 Years")
 
     story, explore = st.tabs([
         "The story",
@@ -378,7 +378,8 @@ elif section == "Task A - Health NGO Board":
         # Display the results
         st.subheader("Average Life Expectancy in 2007")
         st.dataframe(averages)
-          # Create a bar chart comparing continents
+
+        # Create a bar chart comparing continents
         fig = px.bar(
             x=averages.index,
             y=averages.values,
@@ -392,7 +393,47 @@ elif section == "Task A - Health NGO Board":
         # Display the chart
         st.plotly_chart(fig)
 
+        # Explain the findings
+        st.markdown(
+            "Africa had the lowest average life expectancy "
+            "in 2007 at 54.8 years. However, this improved "
+            "from 39.1 years in 1952, showing progress "
+            "over time."
+        )
 
+        # Data source
+        st.caption(
+            "Source: Gapminder dataset via Plotly Express. "
+            "Averages are calculated across countries."
+        )
 
+     # TAB 2: EXPLORE
     with explore:
-        st.write("Our interactive explorer will go here.")
+
+        st.subheader("Explore Global Life Expectancy")
+
+        # Choose a continent
+        continent = st.selectbox(
+            "Select a Continent",
+            ["All"] + sorted(df["continent"].unique())
+        )
+
+        # Choose a year
+        year = st.slider(
+            "Select a Year",
+            1952,
+            2007,
+            2007,
+            step=5
+        )
+
+        # Filter data by year
+        filtered = df[df["year"] == year]
+
+        # Filter data by continent
+        if continent != "All":
+            filtered = filtered[filtered["continent"] == continent]
+
+        # Display filtered data
+        st.dataframe(filtered)
+
