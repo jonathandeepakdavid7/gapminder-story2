@@ -13,7 +13,6 @@ st.set_page_config(
 
 # SIDEBAR NAVIGATION
 st.sidebar.title("Streamlit Workshop")
-
 section = st.sidebar.selectbox(
     "Choose an example",
     [
@@ -23,9 +22,11 @@ section = st.sidebar.selectbox(
         "Demo - Rerun Model",
         "Checkpoint 4 - Layout and Metrics",
         "Demo - Caching",
-        "Checkpoints 5 and 6 - Final App"
+        "Checkpoints 5 and 6 - Final App",
+        "Task A - Health NGO Board"
     ]
 )
+
 
 
 # CHECKPOINT 1: HELLO STREAMLIT
@@ -348,3 +349,22 @@ elif section == "Checkpoints 5 and 6 - Final App":
                 file_name=f"gapminder_{place}_{year}.csv",
                 mime="text/csv"
             )
+
+# TASK A: HEALTH NGO BOARD
+
+elif section == "Task A - Health NGO Board":
+
+    df = px.data.gapminder()
+
+    st.title("Health NGO: Global Life Expectancy")
+
+    story, explore = st.tabs([
+        "The story",
+        "Explore it yourself"
+    ])
+
+    with story:
+        st.write("Our data story will go here.")
+
+    with explore:
+        st.write("Our interactive explorer will go here.")
