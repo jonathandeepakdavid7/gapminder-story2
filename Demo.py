@@ -434,8 +434,9 @@ elif section == "Task A - Health NGO Board":
         if continent != "All":
             filtered = filtered[filtered["continent"] == continent]
 
-        # Display filtered data
-        st.dataframe(filtered)
+         # Display filtered data in an expandable section
+        with st.expander("View the Filtered Data"):
+            st.dataframe(filtered)
 
  # Calculate average life expectancy
         average = filtered["lifeExp"].mean()
