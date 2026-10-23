@@ -437,3 +437,35 @@ elif section == "Task A - Health NGO Board":
         # Display filtered data
         st.dataframe(filtered)
 
+  # Calculate average life expectancy
+        average = filtered["lifeExp"].mean()
+
+        # Display a metric
+        st.metric(
+            "Average Life Expectancy",
+            f"{average:.1f} years"
+        )
+
+        # Explain the selected data
+        place = "the world" if continent == "All" else continent
+
+        st.write(
+            f"In {year}, the {len(filtered)} countries in {place} "
+            f"had an average life expectancy of {average:.1f} years."
+        )
+
+        # Create an interactive scatter plot
+        fig = px.scatter(
+            filtered,
+            x="gdpPercap",
+            y="lifeExp",
+            color="continent",
+            size="pop",
+            hover_name="country",
+            log_x=True,
+            title="Income vs. Life Expectancy"
+        )
+
+        st.plotly_chart(fig)
+
+
