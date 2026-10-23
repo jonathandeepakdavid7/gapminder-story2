@@ -407,7 +407,7 @@ elif section == "Task A - Health NGO Board":
             "Averages are calculated across countries."
         )
 
-     # TAB 2: EXPLORE
+ # TAB 2: EXPLORE
     with explore:
 
         st.subheader("Explore Global Life Expectancy")
@@ -437,9 +437,8 @@ elif section == "Task A - Health NGO Board":
         # Display filtered data
         st.dataframe(filtered)
 
-  # Calculate average life expectancy
+ # Calculate average life expectancy
         average = filtered["lifeExp"].mean()
-
         # Display a metric
         st.metric(
             "Average Life Expectancy",
