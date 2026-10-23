@@ -378,6 +378,20 @@ elif section == "Task A - Health NGO Board":
         # Display the results
         st.subheader("Average Life Expectancy in 2007")
         st.dataframe(averages)
+          # Create a bar chart comparing continents
+        fig = px.bar(
+            x=averages.index,
+            y=averages.values,
+            labels={
+                "x": "Continent",
+                "y": "Average Life Expectancy (Years)"
+            },
+            title="Average Life Expectancy by Continent in 2007"
+        )
+
+        # Display the chart
+        st.plotly_chart(fig)
+
 
 
     with explore:
